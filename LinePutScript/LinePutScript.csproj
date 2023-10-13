@@ -1,10 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
+        <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+        <PackageId>LinePutScript.Net</PackageId>
+        <Version>1.9.2</Version>
+        <Title>LinePutScript.Net</Title>
+        <Authors>深圳市零版计算机技术有限公司, ported by github@appleneko2001</Authors>
+        <Description>LinePutScript is a standard file format and data interchange format for serialise, deserialise object structure and content descriptor that developed by 深圳市零版计算机技术有限公司. LinePutScript.Net is a ported version of LinePutScript implementation, which targeting .netstandard instead, corrected some typo of method names and etc.</Description>
+        <Copyright>LB Copyright © 2018</Copyright>
+        <PackageProjectUrl>https://github.com/appleneko2001/LinePutScript.Net</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/LorisYounger/LinePutScript/blob/master/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/appleneko2001/LinePutScript.Net</RepositoryUrl>
+        <PackageTags>lineputscript</PackageTags>
     </PropertyGroup>
 
 
