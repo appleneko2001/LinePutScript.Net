@@ -1,0 +1,38 @@
+# Test project: LinePutScript.Test
+# NuGet project: LinePutScript
+name: Publish package to GitHub
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      TEST_PROJECT: LinePutScript.Test
+      LIB_PROJECT: LinePutScript
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '7.0.111'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore $LIB_PROJECT/$LIB_PROJECT.csproj
+
+      - name: Test
+        run: dotnet test --no-restore --verbosity normal $TEST_PROJECT
+
+      - name: Pack
+        run: dotnet pack --no-build -p:PatchNumber=$GITHUB_RUN_NUMBER --configuration Release $LIB_PROJECT/$LIB_PROJECT.csproj --output .
+
+      - name: Push package to NuGet
+        run: dotnet nuget push *.nupkg --skip-duplicate --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_KEY }}
